@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'portfolio/styles.css' %}">
+</head>
+<body>
+    <div class="space-bg" aria-hidden="true">
+        <span class="star-field layer-one"></span>
+        <span class="star-field layer-two"></span>
+        <span class="nebula nebula-one"></span>
+        <span class="nebula nebula-two"></span>
+        <span class="shooting-star"></span>
+        <span class="shooting-star meteor-two"></span>
+    </div>
+
+    <header class="site-header">
+        <a class="brand" href="#home">{{ name }}</a>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-links" aria-label="Primary navigation">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero reveal">
+            <div class="hero-content parallax" data-speed="0.18">
+                <p class="eyebrow">Mission control online</p>
+                <h1>{{ name }}</h1>
+                <p class="subtitle">{{ role }}</p>
+                <p class="intro">I build practical web applications with clean backend logic, simple interfaces, and a focus on launching ideas into smooth, usable products.</p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#projects">View Projects</a>
+                    <a class="button secondary" href="#contact">Contact Me</a>
+                </div>
+            </div>
+            <div class="profile-panel parallax" data-speed="-0.12" aria-label="Profile summary">
+                <div class="scanner-line" aria-hidden="true"></div>
+                <div class="orbit-shell">
+                    <div class="avatar">YN</div>
+                    <span class="orbit-ring ring-one"></span>
+                    <span class="orbit-ring ring-two"></span>
+                    <span class="moon moon-one"></span>
+                    <span class="moon moon-two"></span>
+                </div>
+                <p class="panel-label">Current flight path</p>
+                <p>Available for Django projects, portfolio builds, and junior developer opportunities.</p>
+            </div>
+        </section>
+
+        <section id="about" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">About the mission</p>
+                <h2>Backend-minded, frontend-friendly.</h2>
+            </div>
+            <p class="section-copy">This portfolio is powered by Django and rendered with standard HTML templates. You can customize the text, add real projects, connect a contact form, or extend it with a database when you are ready.</p>
+        </section>
+
+        <section id="skills" class="section muted reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Ship systems</p>
+                <h2>Tools I use</h2>
+            </div>
+            <div class="skill-grid">
+                {% for skill in skills %}
+                <span style="--delay: {{ forloop.counter0 }};">{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="projects" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Launch archive</p>
+                <h2>Selected work</h2>
+            </div>
+            <div class="project-grid">
+                {% for project in projects %}
+                <article class="project-card tilt-card">
+                    <span class="card-orbit" aria-hidden="true"></span>
+                    <h3>{{ project.title }}</h3>
+                    <p>{{ project.description }}</p>
+                    <span>{{ project.tech }}</span>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="contact" class="section contact reveal">
+            <div>
+                <p class="eyebrow">Transmission</p>
+                <h2>Let us build something stellar.</h2>
+                <p class="section-copy">Update these links with your real email, GitHub, and LinkedIn profiles.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:you@example.com">you@example.com</a>
+                <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; {% now "Y" %} {{ name }}. Built with Django.</p>
+    </footer>
+
+    <script src="{% static 'portfolio/script.js' %}"></script>
+</body>
+</html>
